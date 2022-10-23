@@ -149,68 +149,31 @@
     background-color: var(--c-gray-2);
   }
 
-  &_longestContainer {
+  &_routeInputContainer {
     display: flex;
     width: 50%;
+    height: 100%;
     padding: 2px;
   }
 
-  &_longest {
-    position: relative;
+  &_routeInput {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: var(--c-gray-2);
+  }
+
+  &_routeAddButton {
     display: flex;
-    flex-grow: 1;
+    height: 100%;
     align-items: center;
-    justify-content: flex-end;
     padding: 10px;
-  }
-
-  &_longestLabel {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-  }
-
-  &_longestRadio {
-    display: flex;
-    width: 25px;
-    height: 25px;
-    align-items: center;
-    justify-content: center;
-
-    &__red {
-      color: var(--c-red);
-    }
-
-    &__blue {
-      color: var(--c-blue);
-    }
-
-    &__green {
-      color: var(--c-green);
-    }
-
-    &__yellow {
-      color: var(--c-yellow);
-    }
-
-    &__black {
-      color: var(--c-black);
-    }
-  }
-
-  &_longestReset {
-    display: flex;
-    width: 55px;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10px;
     background-color: var(--c-gray-3);
-    cursor: pointer;
+
+    &__disabled {
+      color: var(--c-gray-4);
+      cursor: not-allowed;
+    }
   }
 
   &_routeInputsContainer {
@@ -218,20 +181,28 @@
     width: 100%;
     height: 55px;
     align-items: center;
-    padding: 2px;
   }
 
   &_checkboxContainer {
+    position: relative;
     display: flex;
     width: 50%;
     align-items: center;
+    padding: 2px;
   }
 
-  &_routeCheckboxLabel {
+  &_checkboxLabel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
     padding: 0 10px;
   }
 
-  &_routeCheckbox {
+  &_checkbox {
     width: 30px;
     height: 30px;
     border: 2px solid var(--c-gray-9);
@@ -256,32 +227,6 @@
 
     &__black {
       color: var(--c-black);
-    }
-  }
-
-  &_routeInputContainer {
-    display: flex;
-    width: 50%;
-    height: 100%;
-  }
-
-  &_routeInput {
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    background-color: var(--c-gray-2);
-  }
-
-  &_routeAddButton {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    padding: 10px;
-    background-color: var(--c-gray-3);
-
-    &__disabled {
-      color: var(--c-gray-4);
-      cursor: not-allowed;
     }
   }
 

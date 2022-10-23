@@ -9,19 +9,11 @@ module Page.Index exposing
     , view
     )
 
+import Attributes exposing (ariaHidden, ifAttr, inputmode)
 import Html exposing (..)
-import Html.Attributes exposing (attribute, checked, class, disabled, for, id, name, pattern, placeholder, type_, value)
+import Html.Attributes exposing (checked, class, disabled, for, id, name, pattern, placeholder, type_, value)
 import Html.Events exposing (onCheck, onClick, onInput, onSubmit)
 import Store exposing (Store)
-
-
-ifAttr : Bool -> Attribute msg -> Attribute msg
-ifAttr condition attr =
-    if condition then
-        attr
-
-    else
-        Html.Attributes.classList []
 
 
 baseClass : String
@@ -453,7 +445,7 @@ routeInputView color completed points =
             , input
                 [ c "routeInput"
                 , type_ "text"
-                , attribute "inputmode" "numeric"
+                , inputmode "numeric"
                 , pattern "\\d*"
                 , id inputId
                 , value points
@@ -469,10 +461,10 @@ routeInputView color completed points =
                 [ text "Add" ]
             ]
         , div [ c "checkboxContainer" ]
-            [ label [ c "routeCheckboxLabel", for checkboxId ] [ text "Completed" ]
+            [ label [ c "checkboxLabel", for checkboxId ] [ text "Completed" ]
             , input
-                [ c "routeCheckbox"
-                , c ("routeCheckbox__" ++ colorToString color)
+                [ c "checkbox"
+                , c ("checkbox__" ++ colorToString color)
                 , type_ "checkbox"
                 , id checkboxId
                 , checked completed
@@ -529,31 +521,25 @@ longestView color longest =
         longestId =
             "longest" ++ colorString
     in
-    div [ c "longestContainer" ]
-        [ div [ c "longest" ]
-            [ label [ c "longestLabel", for longestId ] [ text "Longest" ]
-            , input
-                [ c "longestRadio"
-                , c ("longestRadio__" ++ colorString)
-                , id longestId
-                , type_ "radio"
-                , name "longest"
-                , onClick (SetLongest (Color color))
-                , checked
-                    (case longest of
-                        Unknown ->
-                            False
+    div [ c "checkboxContainer" ]
+        [ label [ c "checkboxLabel", for longestId ] [ text "Longest" ]
+        , input
+            [ c "checkbox"
+            , c ("checkbox__" ++ colorString)
+            , id longestId
+            , type_ "checkbox"
+            , name "longest"
+            , onCheck (SetLongest color)
+            , checked
+                (case longest of
+                    Unknown ->
+                        False
 
-                        Color col ->
-                            col == color
-                    )
-                ]
-                []
+                    Color col ->
+                        col == color
+                )
             ]
-        , button [ c "longestReset", onClick (SetLongest Unknown) ]
-            [ div [ class "visuallyHidden" ] [ text "Reset longest" ]
-            , div [ attribute "aria-hidden" "true" ] [ text "❌" ]
-            ]
+            []
         ]
 
 
@@ -565,7 +551,7 @@ type Msg
     = Increment Color Counter
     | Decrement Color Counter
     | SelectPlayer Color
-    | SetLongest Longest
+    | SetLongest Color Bool
     | ToggleCompleted Color Bool
     | SetRouteInput Color String
     | AddRoute Color Route
@@ -692,8 +678,12 @@ update msg model =
         SelectPlayer color ->
             ( { model | currentPlayerColor = color }, Cmd.none )
 
-        SetLongest longest ->
-            ( { model | longest = longest }, Cmd.none )
+        SetLongest color isLongest ->
+            if isLongest then
+                ( { model | longest = Color color }, Cmd.none )
+
+            else
+                ( { model | longest = Unknown }, Cmd.none )
 
         ToggleCompleted color completed ->
             ( updateByColor
