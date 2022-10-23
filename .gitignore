@@ -26,3 +26,5 @@ dist-ssr
 # elm
 elm-stuff
 public/elm.js
+
+.vercel
