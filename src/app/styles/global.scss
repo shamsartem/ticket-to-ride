@@ -32,3 +32,25 @@ body {
   margin: -1px !important;
   clip: rect(0, 0, 0, 0) !important;
 }
+
+.fullSize {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  padding: 11px;
+  border-radius: var(--bdrs-md);
+  background-color: var(--c-gray-3);
+  cursor: pointer;
+  transition: background-color var(--t);
+
+  &:hover {
+    background-color: var(--c-gray-2);
+  }
+}
