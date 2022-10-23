@@ -1,0 +1,19 @@
+/* Don't forget to update Store.elm as well */
+
+@mixin mediaMedium {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mediaLarge {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin mediaExtraLarge {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}

@@ -1,0 +1,14 @@
+@import "./reset.scss";
+@import "./media.scss";
+@import "./variables.scss";
+@import "./global.scss";
+
+/* views */
+
+@import "../../View/Loader.scss";
+@import "../../View/Confirm.scss";
+@import "../../View/Toasts.scss";
+
+/* pages */
+
+@import "../../Page/Index.scss";
